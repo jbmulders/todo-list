@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
-import { reducers } from '@store';
+import { reducers, RootFacade } from '@store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { CoreModule } from './core/core.module';
@@ -23,7 +23,7 @@ import { EffectsModule } from '@ngrx/effects';
     }),
     EffectsModule.forRoot([]),
   ],
-  providers: [],
+  providers: [RootFacade],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

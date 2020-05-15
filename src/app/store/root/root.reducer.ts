@@ -8,6 +8,7 @@ export const reducers = {
 const initialState: IRootState = {
   user: null,
   isLoggedIn: false,
+  message: null,
 };
 
 export function rootReducer(
