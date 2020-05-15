@@ -45,4 +45,9 @@ export class LogoutSuccess implements Action {
   readonly type = EAuthActionType.logoutSuccess;
 }
 
-export type AuthAction = DoLogin | DoLogout | LoginSuccess | LoginError;
+export type AuthAction =
+  | DoLogin
+  | DoLogout
+  | LoginSuccess
+  | LoginError
+  | LogoutSuccess;
