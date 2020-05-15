@@ -21,13 +21,13 @@ export function authReducer(
         ...state,
         isLoggedIn: true,
         user: action.payload.user,
-        loginError: null,
       };
 
-    case EAuthActionType.loginError:
+    case EAuthActionType.logoutSuccess:
       return {
         ...state,
-        loginError: action.payload.error,
+        isLoggedIn: false,
+        user: null,
       };
 
     default:
