@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { RootFacade } from '@store';
 
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
-  styleUrls: ['./todo.component.scss']
+  styleUrls: ['./todo.component.scss'],
 })
-export class TodoComponent implements OnInit {
+export class TodoComponent {
+  constructor(private rootFacade: RootFacade) {}
 
-  constructor() { }
-
-  ngOnInit(): void {
+  doLogout() {
+    this.rootFacade.handleLogout();
   }
-
 }

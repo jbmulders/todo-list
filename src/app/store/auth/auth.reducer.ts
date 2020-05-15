@@ -8,7 +8,6 @@ import {
 const initialState: IAuthState = {
   isLoggedIn: false,
   user: null,
-  loginError: null,
 };
 
 export function authReducer(

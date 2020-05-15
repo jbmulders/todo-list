@@ -10,6 +10,9 @@ import {
   LoginSuccess,
   LoginError,
   DoLogin,
+  DoLogout,
+  LogoutSuccess,
+  LogoutError,
 } from './auth.actions';
 
 @Injectable()
@@ -31,6 +34,19 @@ export class AuthEffects {
             })
           )
         )
+      )
+    )
+  );
+
+  @Effect()
+  doLogout$: Observable<Action> = this.actions$.pipe(
+    ofType(EAuthActionType.logout),
+    mergeMap((action: DoLogout) =>
+      this.authService.doLogout().pipe(
+        map((fbUser) => {
+          return new LogoutSuccess();
+        }),
+        catchError((error) => of(new LogoutError()))
       )
     )
   );

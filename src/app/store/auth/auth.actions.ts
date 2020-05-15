@@ -7,7 +7,6 @@ export const authStoreName = 'auth';
 export interface IAuthState {
   isLoggedIn: boolean;
   user: firebase.UserInfo;
-  loginError: IError;
 }
 
 export enum EAuthActionType {
@@ -43,6 +42,10 @@ export class DoLogout implements Action {
 
 export class LogoutSuccess implements Action {
   readonly type = EAuthActionType.logoutSuccess;
+}
+
+export class LogoutError implements Action {
+  readonly type = EAuthActionType.logoutError;
 }
 
 export type AuthAction =

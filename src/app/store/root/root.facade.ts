@@ -7,6 +7,7 @@ import {
 } from '@ngrx/store';
 import { IRootState, rootStoreName } from './root.actions';
 import { Router } from '@angular/router';
+import { DoLogout } from '../auth';
 
 const featureSelector = createFeatureSelector<IRootState>(rootStoreName);
 const getIsLoggedIn = createSelector(
@@ -31,5 +32,9 @@ export class RootFacade {
         ? this.router.navigate(['/todo/list'])
         : this.router.navigate(['/auth/login'])
     );
+  }
+
+  handleLogout() {
+    this.store.dispatch(new DoLogout());
   }
 }
