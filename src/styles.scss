@@ -1,23 +1,114 @@
 @import "./colors";
+
 html {
   height: 100vh;
   overflow: hidden;
   font-family: Arial, Helvetica, sans-serif;
+  -webkit-user-select: none; /* Chrome/Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
 }
 body {
   background-color: $background-color;
   color: $primary-text-color;
   height: 100%;
 }
-.page {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  overflow-y: auto;
+
+button,
+.button {
+  background-color: transparent;
+  color: $primary;
+  border: 2px solid $primary;
+  padding: 8px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
-.center {
+button:hover,
+.button:hover {
+  background-color: $lightest-gray;
+}
+
+button[disabled],
+.button[disabled] {
+  background-color: $light-gray;
+  color: $dark-gray;
+  border: 2px solid $dark-gray;
+  cursor: auto;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+select {
+  padding: 8px 15px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 2px solid $primary;
+  background-color: $light-gray;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+select:focus {
+  background-color: $white;
+}
+
+input[type="text"]:disabled,
+input[type="password"]:disabled,
+input[type="email"]:disabled,
+select:disabled {
+  border: 2px solid $dark-gray;
+  background-color: $middle-gray;
+}
+
+button[disabled]:hover,
+.button[disabled]:hover {
+  background-color: $light-gray;
+}
+
+div.card {
+  div {
+    margin: 5px 0;
+  }
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  padding: 12px;
+  background-color: $darker-gray;
+  border-radius: 5px;
+  color: $dark-gray;
+  .card-image {
+    img {
+      width: 100%;
+    }
+  }
+  .card-header {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+
+  .card-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    * {
+      margin: 5px;
+    }
+  }
+
+  .card-actions {
+    flex-direction: row;
+    justify-content: flex-end;
+    display: flex;
+    align-items: center;
+    font-size: 0.8em;
+  }
 }

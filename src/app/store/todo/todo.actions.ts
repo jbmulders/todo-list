@@ -1,6 +1,11 @@
 import { Action } from '@ngrx/store';
 import { ITodo } from '@model';
 
+export interface ITodoState {
+  list: ITodo[];
+  selected: ITodo;
+}
+
 export enum ETodoActionType {
   getList = '[TODO] get todo item list',
   getListSuccess = '[TODO] get todo item list success',

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { takeWhile } from 'rxjs/operators';
-import { IToastMessage } from '@model';
+import { IToastMessage, IError } from '@model';
 
 @Component({
   selector: 'app-toast',
@@ -9,7 +9,7 @@ import { IToastMessage } from '@model';
   styleUrls: ['./toast.component.scss'],
 })
 export class ToastComponent implements OnInit, OnDestroy {
-  @Input() toastMessage$: Observable<IToastMessage>;
+  @Input() toastMessage: Observable<IToastMessage | IError>;
 
   show: boolean;
   message: string;
@@ -18,13 +18,13 @@ export class ToastComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.componentActive = true;
     this.show = false;
-    this.toastMessage$
+    this.toastMessage
       .pipe(takeWhile(() => this.componentActive))
-      .subscribe((error: IToastMessage) => {
-        if (error) {
-          this.message = error.message;
+      .subscribe((toastMessage: IToastMessage) => {
+        if (toastMessage) {
+          this.message = toastMessage.message;
           this.show = true;
-          setTimeout(() => (this.show = false), error.duration || 4000);
+          setTimeout(() => (this.show = false), toastMessage.duration || 4000);
         }
       });
   }

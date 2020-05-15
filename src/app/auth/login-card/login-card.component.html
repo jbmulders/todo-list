@@ -1,0 +1,20 @@
+<div class="card">
+  <div class="card-image">
+    <img src="assets/images/logo.png" />
+  </div>
+  <form #loginForm="ngForm" novalidate (ngSubmit)="submitLoginForm(loginForm)">
+    <div class="card-content">
+      <input type="text" name="email" placeholder="Email" ngModel required />
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        ngModel
+        required
+      />
+    </div>
+    <div class="card-actions">
+      <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    </div>
+  </form>
+</div>

@@ -1,4 +1,14 @@
 import { Action } from '@ngrx/store';
+import { ICredential } from '@model';
+import { IError } from 'app/core/model/error';
+
+export const authStoreName = 'auth';
+
+export interface IAuthState {
+  isLoggedIn: boolean;
+  user: firebase.UserInfo;
+  loginError: IError;
+}
 
 export enum EAuthActionType {
   login = '[AUTH] do login',
@@ -10,12 +20,25 @@ export enum EAuthActionType {
 }
 
 export class DoLogin implements Action {
-  type = EAuthActionType.login;
-  constructor(public payload: { email: string; password: string }) {}
+  readonly type = EAuthActionType.login;
+
+  constructor(public payload: { credentials: ICredential }) {}
+}
+
+export class LoginSuccess implements Action {
+  readonly type = EAuthActionType.loginSuccess;
+
+  constructor(public payload: { user: firebase.UserInfo }) {}
+}
+
+export class LoginError implements Action {
+  readonly type = EAuthActionType.loginError;
+
+  constructor(public payload: { error: IError }) {}
 }
 
 export class DoLogout implements Action {
-  type = EAuthActionType.logout;
+  readonly type = EAuthActionType.logout;
 }
 
-export type AuthAction = DoLogin | DoLogout;
+export type AuthAction = DoLogin | DoLogout | LoginSuccess | LoginError;

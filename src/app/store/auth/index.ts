@@ -1,4 +1,4 @@
-export const authStoreName = 'auth';
-export * from './auth-facade.service';
+export * from './auth.facade';
 export * from './auth.actions';
 export * from './auth.reducer';
+export * from './auth.effects';

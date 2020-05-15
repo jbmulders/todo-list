@@ -1,4 +1,4 @@
-import { ITodoState } from './todo.types';
+import { ITodoState } from './todo.actions';
 
 const initialState: ITodoState = {
   list: [],
