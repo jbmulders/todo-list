@@ -6,8 +6,15 @@ import {
   createSelector,
   select,
 } from '@ngrx/store';
-import { IAuthState, DoLogin, DoLogout } from './auth.actions';
+import {
+  IAuthState,
+  DoLogin,
+  DoLogout,
+  LoginSuccess,
+  LogoutSuccess,
+} from './auth.actions';
 import { authStoreName } from './auth.actions';
+import { AuthService } from 'app/auth/auth-service/auth.service';
 
 const featureSelector = createFeatureSelector<IAuthState>(authStoreName);
 const getIsLoggedIn = createSelector(
@@ -26,7 +33,16 @@ export class AuthFacade {
   loginError$ = this.store.pipe(select(getLoginError));
   getCurrentUser$ = this.store.pipe(select(getCurrentUser));
 
-  constructor(private store: Store<IAuthState>) {}
+  constructor(
+    private store: Store<IAuthState>,
+    private authService: AuthService
+  ) {
+    authService.AuthState$.subscribe((user) =>
+      user
+        ? store.dispatch(new LoginSuccess({ user }))
+        : store.dispatch(new LogoutSuccess())
+    );
+  }
 
   handleLogin(credentials: ICredential) {
     this.store.dispatch(new DoLogin({ credentials }));
