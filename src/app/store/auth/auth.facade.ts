@@ -37,7 +37,7 @@ export class AuthFacade {
     private store: Store<IAuthState>,
     private authService: AuthService
   ) {
-    authService.AuthState$.subscribe((user) =>
+    authService.authState$.subscribe((user) =>
       user
         ? store.dispatch(new LoginSuccess({ user }))
         : store.dispatch(new LogoutSuccess())
