@@ -1,0 +1,7 @@
+@import "../../../mixins";
+@import "../../../colors";
+
+:host {
+  @include page;
+  @include center;
+}

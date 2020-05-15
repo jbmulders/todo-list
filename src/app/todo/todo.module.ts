@@ -6,9 +6,10 @@ import { TodoRoutingModule } from './todo.routing';
 import { StoreModule } from '@ngrx/store';
 import { todoStoreName, todoReducer } from '@store';
 import { SharedModule } from 'app/shared/shared.module';
+import { TodoListComponent } from './todo-list/todo-list.component';
 
 @NgModule({
-  declarations: [TodoComponent, ListContainerComponent],
+  declarations: [TodoComponent, ListContainerComponent, TodoListComponent],
   imports: [
     TodoRoutingModule,
     CommonModule,
