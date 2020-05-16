@@ -9,7 +9,7 @@
     <span *ngIf="todos.length === 0">No Todo's!</span>
   </div>
   <div class="card-actions">
-    <button>
+    <button (click)="addButtonClicked()">
       <i class="fas fa-plus"></i>
     </button>
   </div>

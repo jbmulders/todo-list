@@ -1,0 +1,16 @@
+<div *ngIf="show" class="container">
+  <div class="card">
+    <div class="card-content">
+      <input type="text" placeholder="title" />
+      <input type="text" placeholder="description" />
+    </div>
+    <div class="card-actions">
+      <button (click)="close()">
+        Cancel
+      </button>
+      <button>
+        Save
+      </button>
+    </div>
+  </div>
+</div>

@@ -2,4 +2,9 @@
   [todos]="list$ | async"
   (addClick)="addTodoClicked()"
 ></app-todo-list>
-<!-- <app-edit-todo [todo]="" (saveClick)="saveTodo($event)"></app-edit-todo> -->
+
+<app-edit-todo
+  #todoDialog
+  [todo]="newTodo$ | async"
+  (saveClick)="saveTodo($event)"
+></app-edit-todo>
