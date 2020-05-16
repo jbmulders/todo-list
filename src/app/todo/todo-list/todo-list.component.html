@@ -3,7 +3,10 @@
     TODO List
   </div>
   <div class="card-content">
-    <p>list here...</p>
+    <div class="row" *ngFor="let todo of todos">
+      {{ todo.title }}
+    </div>
+    <span *ngIf="todos.length === 0">No Todo's!</span>
   </div>
   <div class="card-actions">
     <button>

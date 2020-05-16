@@ -4,7 +4,7 @@ import {
   IRootState,
   ERootActionType,
 } from './root.actions';
-import { EAuthActionType } from '../auth';
+import { EAuthActionType } from '../auth/auth.actions';
 import { IToastMessage } from '@model';
 
 export const reducers = {

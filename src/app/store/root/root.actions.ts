@@ -1,6 +1,5 @@
-import { authStoreName } from '@store';
-import { IAuthState, AuthAction } from '../auth';
-import { TodoAction } from '../todo';
+import { IAuthState, AuthAction, authStoreName } from '../auth/auth.actions';
+import { TodoAction } from '../todo/todo.actions';
 import { IToastMessage } from '@model';
 import { Action } from '@ngrx/store';
 

@@ -22,15 +22,10 @@ const getIsLoggedIn = createSelector(
   (state) => state?.isLoggedIn
 );
 const getCurrentUser = createSelector(featureSelector, (state) => state?.user);
-const getLoginError = createSelector(
-  featureSelector,
-  (state) => state?.loginError
-);
 
 @Injectable()
 export class AuthFacade {
   isLoggedIn$ = this.store.pipe(select(getIsLoggedIn));
-  loginError$ = this.store.pipe(select(getLoginError));
   getCurrentUser$ = this.store.pipe(select(getCurrentUser));
 
   constructor(

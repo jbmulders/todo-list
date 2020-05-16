@@ -1,1 +1,5 @@
-<app-todo-list></app-todo-list>
+<app-todo-list
+  [todos]="list$ | async"
+  (addClick)="addTodoClicked()"
+></app-todo-list>
+<!-- <app-edit-todo [todo]="" (saveClick)="saveTodo($event)"></app-edit-todo> -->

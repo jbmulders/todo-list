@@ -7,7 +7,7 @@ import {
 } from '@ngrx/store';
 import { IRootState, rootStoreName } from './root.actions';
 import { Router } from '@angular/router';
-import { DoLogout } from '../auth';
+import { DoLogout } from '../auth/auth.actions';
 
 const featureSelector = createFeatureSelector<IRootState>(rootStoreName);
 const getIsLoggedIn = createSelector(

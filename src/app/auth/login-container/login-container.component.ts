@@ -15,7 +15,6 @@ export class LoginContainerComponent implements OnInit {
   constructor(private authFacade: AuthFacade) {}
 
   ngOnInit(): void {
-    this.loginError$ = this.authFacade.loginError$;
     this.user$ = this.authFacade.getCurrentUser$;
   }
 
