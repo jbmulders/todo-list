@@ -1,5 +1,8 @@
 <div *ngIf="show" class="container">
   <div class="card">
+    <div class="card-header">
+      {{ isNewTodo ? "New ToDo" : "Edit ToDo" }}
+    </div>
     <div class="card-content">
       <input type="text" placeholder="title" />
       <input type="text" placeholder="description" />

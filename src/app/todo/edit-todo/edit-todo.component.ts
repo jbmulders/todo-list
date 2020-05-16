@@ -8,6 +8,7 @@ import { ITodo } from '@model';
 })
 export class EditTodoComponent implements OnInit {
   @Input() todo: ITodo;
+  @Input() isNewTodo: boolean;
   @Output() saveClick = new EventEmitter<{ item: ITodo }>();
 
   show: boolean;

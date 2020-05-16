@@ -5,7 +5,13 @@ import {
   Store,
   select,
 } from '@ngrx/store';
-import { todoStoreName, ITodoState, GetList } from './todo.actions';
+import {
+  todoStoreName,
+  ITodoState,
+  GetList,
+  SetSelectedTodo,
+  SetSelectedNewTodo,
+} from './todo.actions';
 import { ITodo } from '@model';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { RootFacade } from '../root/root.facade';
@@ -16,11 +22,13 @@ import { SaveTodo } from './todo.actions';
 const featureSelector = createFeatureSelector<ITodoState>(todoStoreName);
 const getList = createSelector(featureSelector, (state) => state?.list);
 const getSelected = createSelector(featureSelector, (state) => state?.selected);
+const getIsNew = createSelector(featureSelector, (state) => state?.isNew);
 
 @Injectable()
 export class TodoFacade {
   todos$ = this.store.pipe(select(getList));
   selectedTodo$ = this.store.pipe(select(getSelected));
+  isNew$ = this.store.pipe(select(getIsNew));
 
   constructor(
     private rootFacade: RootFacade,
@@ -34,6 +42,12 @@ export class TodoFacade {
 
   handleSaveTodo(todo: ITodo) {
     this.store.dispatch(new SaveTodo({ todo }));
+  }
+
+  handleSelectTodo(todo?: ITodo) {
+    todo
+      ? this.store.dispatch(new SetSelectedTodo({ todo }))
+      : this.store.dispatch(new SetSelectedNewTodo());
   }
 
   initNewTodo(): Observable<ITodo> {

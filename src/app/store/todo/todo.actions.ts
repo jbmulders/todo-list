@@ -6,6 +6,7 @@ export const todoStoreName = 'todo';
 export interface ITodoState {
   list: ITodo[];
   selected: ITodo;
+  isNew: boolean;
 }
 
 export enum ETodoActionType {
@@ -16,6 +17,10 @@ export enum ETodoActionType {
   saveTodo = '[TODO] save todo item',
   saveTodoSuccess = '[TODO] save todo item success',
   saveTodoError = '[TODO] save todo item error',
+  setSelectedTodo = '[TODO] set selected todo',
+  setSelectedToNewTodo = '[TODO] show new todo item',
+  setSelectedToNewTodoSuccess = '[TODO] show new todo item success',
+  setSelectedToNewTodoError = '[TODO] show new todo item error',
 }
 
 export class GetList implements Action {
@@ -39,10 +44,40 @@ export class SaveTodo implements Action {
 
 export class SaveTodoError implements Action {
   readonly type = ETodoActionType.saveTodoError;
+  constructor(public payload: { error: IError }) {}
 }
 
 export class SaveTodoSuccess implements Action {
   readonly type = ETodoActionType.saveTodoSuccess;
 }
 
-export type TodoAction = GetList | GetListSuccess | GetListError;
+export class SetSelectedTodo implements Action {
+  readonly type = ETodoActionType.setSelectedTodo;
+  constructor(public payload: { todo: ITodo }) {}
+}
+
+export class SetSelectedNewTodo implements Action {
+  readonly type = ETodoActionType.setSelectedToNewTodo;
+}
+
+export class SetSelectedNewTodoError implements Action {
+  readonly type = ETodoActionType.setSelectedToNewTodoError;
+  constructor(public payload: { error: IError }) {}
+}
+
+export class SetSelectedNewTodoSuccess implements Action {
+  readonly type = ETodoActionType.setSelectedToNewTodoSuccess;
+  constructor(public payload: { todo: ITodo }) {}
+}
+
+export type TodoAction =
+  | GetList
+  | GetListSuccess
+  | GetListError
+  | SaveTodo
+  | SaveTodoError
+  | SaveTodoSuccess
+  | SetSelectedTodo
+  | SetSelectedNewTodo
+  | SetSelectedNewTodoError
+  | SetSelectedNewTodoSuccess;

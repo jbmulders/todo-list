@@ -5,6 +5,7 @@
 
 <app-edit-todo
   #todoDialog
-  [todo]="newTodo$ | async"
+  [isNewTodo]="isNew$ | async"
+  [todo]="selectedTodo$ | async"
   (saveClick)="saveTodo($event)"
 ></app-edit-todo>

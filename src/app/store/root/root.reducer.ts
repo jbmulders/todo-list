@@ -6,6 +6,7 @@ import {
 } from './root.actions';
 import { EAuthActionType } from '../auth/auth.actions';
 import { IToastMessage } from '@model';
+import { ETodoActionType } from '../todo';
 
 export const reducers = {
   [rootStoreName]: rootReducer,
@@ -57,6 +58,19 @@ export function rootReducer(
         ...state,
         message: action.payload.error,
       };
+
+    case ETodoActionType.setSelectedToNewTodoError:
+      return {
+        ...state,
+        message: action.payload.error,
+      };
+
+    case ETodoActionType.saveTodoError:
+      return {
+        ...state,
+        message: action.payload.error,
+      };
+
     default:
       return state;
   }

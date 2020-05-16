@@ -11,15 +11,20 @@ import {
   GetListSuccess,
   SaveTodo,
   SaveTodoSuccess,
+  SetSelectedNewTodoSuccess,
+  SetSelectedNewTodoError,
+  SetSelectedTodo,
 } from './todo.actions';
 import { TodoService } from 'app/todo/todo-service/todo.service';
 import { RootFacade } from '../root/root.facade';
+import { TodoFacade } from './todo.facade';
 
 @Injectable()
-export class AuthEffects {
+export class TodoEffects {
   constructor(
     private todoService: TodoService,
     private rootFacade: RootFacade,
+    private todoFacade: TodoFacade,
     private actions$: Actions
   ) {}
 
@@ -44,6 +49,7 @@ export class AuthEffects {
     )
   );
 
+  @Effect()
   saveTodo$: Observable<Action> = this.actions$.pipe(
     ofType(ETodoActionType.saveTodo),
     mergeMap((action: SaveTodo) =>
@@ -54,6 +60,23 @@ export class AuthEffects {
     catchError((error) =>
       of(
         new GetListError({
+          error: { message: error.message, code: error.code },
+        })
+      )
+    )
+  );
+
+  @Effect()
+  setNewTodo$: Observable<Action> = this.actions$.pipe(
+    ofType(ETodoActionType.setSelectedToNewTodo),
+    mergeMap((action: SetSelectedTodo) =>
+      this.todoFacade
+        .initNewTodo()
+        .pipe(map((todo) => new SetSelectedNewTodoSuccess({ todo })))
+    ),
+    catchError((error) =>
+      of(
+        new SetSelectedNewTodoError({
           error: { message: error.message, code: error.code },
         })
       )

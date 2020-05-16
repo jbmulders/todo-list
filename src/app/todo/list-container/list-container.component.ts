@@ -12,17 +12,19 @@ import { EditTodoComponent } from '../edit-todo/edit-todo.component';
 export class ListContainerComponent implements OnInit {
   @ViewChild('todoDialog') todoDialog: EditTodoComponent;
   list$: Observable<ITodo[]>;
-  newTodo$: Observable<ITodo>;
+  isNew$: Observable<boolean>;
+  selectedTodo$: Observable<ITodo>;
 
   constructor(private todoFacade: TodoFacade) {}
 
   ngOnInit(): void {
     this.list$ = this.todoFacade.todos$;
-    this.newTodo$ = this.todoFacade.initNewTodo();
+    this.isNew$ = this.todoFacade.isNew$;
+    this.selectedTodo$ = this.todoFacade.selectedTodo$;
   }
 
   addTodoClicked() {
-    this.newTodo$ = this.todoFacade.initNewTodo();
+    this.todoFacade.handleSelectTodo();
     this.todoDialog.open();
   }
 

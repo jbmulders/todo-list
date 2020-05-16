@@ -3,6 +3,7 @@ import { ITodoState, ETodoActionType, TodoAction } from './todo.actions';
 const initialState: ITodoState = {
   list: [],
   selected: null,
+  isNew: null,
 };
 
 export function todoReducer(
@@ -14,6 +15,20 @@ export function todoReducer(
       return {
         ...state,
         list: action.payload.list,
+      };
+
+    case ETodoActionType.setSelectedTodo:
+      return {
+        ...state,
+        isNew: false,
+        selected: action.payload.todo,
+      };
+
+    case ETodoActionType.setSelectedToNewTodoSuccess:
+      return {
+        ...state,
+        isNew: true,
+        selected: action.payload.todo,
       };
 
     default:
