@@ -16,7 +16,6 @@ export class TodoService {
   }
 
   saveTodo(todo: ITodo): Observable<void> {
-    todo.createOn = Date.now();
     return from(this.afFirestore.collection('todos').doc(todo.id).set(todo));
   }
 }

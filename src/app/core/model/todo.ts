@@ -1,7 +1,7 @@
 export interface ITodo {
   title: string;
   description: string;
-  due?: Date;
+  due?: number | string;
   createdBy: string;
   createOn: number;
   id: string;

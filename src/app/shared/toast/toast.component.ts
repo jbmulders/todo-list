@@ -24,6 +24,7 @@ export class ToastComponent implements OnInit, OnDestroy {
         if (toastMessage) {
           this.message = toastMessage.message;
           this.show = true;
+          console.log(this.message);
           setTimeout(() => (this.show = false), toastMessage.duration || 4000);
         }
       });

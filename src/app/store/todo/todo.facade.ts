@@ -18,6 +18,7 @@ import { RootFacade } from '../root/root.facade';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { SaveTodo } from './todo.actions';
+import { isNgTemplate } from '@angular/compiler';
 
 const featureSelector = createFeatureSelector<ITodoState>(todoStoreName);
 const getList = createSelector(featureSelector, (state) => state?.list);
@@ -41,6 +42,7 @@ export class TodoFacade {
   }
 
   handleSaveTodo(todo: ITodo) {
+    todo.createOn = Date.now();
     this.store.dispatch(new SaveTodo({ todo }));
   }
 

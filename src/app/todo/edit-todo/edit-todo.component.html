@@ -3,17 +3,48 @@
     <div class="card-header">
       {{ isNewTodo ? "New ToDo" : "Edit ToDo" }}
     </div>
-    <div class="card-content">
-      <input type="text" placeholder="title" />
-      <input type="text" placeholder="description" />
-    </div>
-    <div class="card-actions">
-      <button (click)="close()">
-        Cancel
-      </button>
-      <button>
-        Save
-      </button>
-    </div>
+    <form
+      #todoForm="ngForm"
+      novalidate
+      (ngSubmit)="submitTodoForm(todoForm)"
+      *ngIf="todo && todo.id > ''"
+    >
+      <div class="card-content">
+        <input
+          type="text"
+          class="form-control"
+          name="title"
+          ngModel
+          placeholder="title"
+          required
+        />
+
+        <input
+          type="text"
+          class="form-control"
+          name="description"
+          ngModel
+          placeholder="description"
+          required
+        />
+
+        <!-- TODO: turn this into a date picker -->
+        <input
+          type="text"
+          class="form-control"
+          name="due"
+          ngModel
+          placeholder="Due [todo: datepicker]"
+        />
+      </div>
+      <div class="card-actions">
+        <button (click)="close()">
+          Cancel
+        </button>
+        <button type="submit" [disabled]="todoForm.invalid">
+          Save
+        </button>
+      </div>
+    </form>
   </div>
 </div>

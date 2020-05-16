@@ -21,6 +21,8 @@ export class ListContainerComponent implements OnInit {
     this.list$ = this.todoFacade.todos$;
     this.isNew$ = this.todoFacade.isNew$;
     this.selectedTodo$ = this.todoFacade.selectedTodo$;
+
+    this.todoFacade.handleLoadTodos();
   }
 
   addTodoClicked() {

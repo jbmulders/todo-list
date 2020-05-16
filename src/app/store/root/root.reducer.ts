@@ -59,6 +59,12 @@ export function rootReducer(
         message: action.payload.error,
       };
 
+    case ETodoActionType.getListError:
+      return {
+        ...state,
+        message: action.payload.error,
+      };
+
     case ETodoActionType.setSelectedToNewTodoError:
       return {
         ...state,
@@ -70,6 +76,13 @@ export function rootReducer(
         ...state,
         message: action.payload.error,
       };
+
+    case ETodoActionType.saveTodoSuccess: {
+      return {
+        ...state,
+        message: { message: 'Item saved!' },
+      };
+    }
 
     default:
       return state;

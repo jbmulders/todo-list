@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ITodo } from '@model';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-todo',
@@ -16,13 +17,16 @@ export class EditTodoComponent implements OnInit {
   ngOnInit(): void {
     this.show = false;
   }
-  saveButtonClicked() {
-    this.saveClick.emit({ item: this.todo });
-  }
   open() {
     this.show = true;
   }
   close() {
     this.show = false;
+  }
+
+  submitTodoForm(form: NgForm) {
+    // TODO: properly bind to the form...
+    this.saveClick.emit({ item: { ...this.todo, ...form.value } });
+    this.close();
   }
 }

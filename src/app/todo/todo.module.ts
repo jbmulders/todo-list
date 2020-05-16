@@ -10,6 +10,7 @@ import { TodoListComponent } from './todo-list/todo-list.component';
 import { EditTodoComponent } from './edit-todo/edit-todo.component';
 import { EffectsModule } from '@ngrx/effects';
 import { TodoService } from './todo-service/todo.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { TodoService } from './todo-service/todo.service';
     TodoRoutingModule,
     CommonModule,
     SharedModule,
+    FormsModule,
     EffectsModule.forFeature([TodoEffects]),
     StoreModule.forFeature(todoStoreName, todoReducer),
   ],
