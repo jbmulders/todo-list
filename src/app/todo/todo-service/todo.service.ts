@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ITodo } from '@model';
 import { Observable, from } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class TodoService {
@@ -14,9 +15,9 @@ export class TodoService {
           .where('createdBy', '==', userId)
           .where('done', '==', false)
           .limit(100)
-          .orderBy('due')
       )
-      .valueChanges();
+      .valueChanges()
+      .pipe(map((todos) => todos.sort((a, b) => (a.due > b.due ? 1 : -1))));
   }
 
   // TODO: show these somewhere
@@ -27,7 +28,6 @@ export class TodoService {
           .where('createdBy', '==', userId)
           .where('done', '==', true)
           .limit(100)
-          .orderBy('due')
       )
       .valueChanges();
   }
