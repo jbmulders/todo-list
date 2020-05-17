@@ -1,9 +1,7 @@
 <div class="card">
-  <div class="card-header">
-    TODO List
-  </div>
+  <div class="card-header">TODOs ({{ todos.length }})</div>
   <div class="card-content">
-    <table>
+    <table *ngIf="todos?.length > 0; else noItems">
       <tr>
         <th></th>
         <th>Title</th>
@@ -13,23 +11,32 @@
       </tr>
       <tr *ngFor="let todo of todos">
         <td>
-          <input type="checkbox" />
+          <input type="checkbox" appTooltip="Mark as done" position="left" />
         </td>
         <td>{{ todo.title }}</td>
         <td>{{ todo.description }}</td>
         <td>{{ todo.due | date: "dd/MM/yyyy" }}</td>
         <td>
-          <button (click)="rowClicked(todo)">
+          <button
+            (click)="rowClicked(todo)"
+            appTooltip="Edit item"
+            position="right"
+          >
             <i class="fas fa-edit"></i>
           </button>
         </td>
       </tr>
     </table>
-    <span *ngIf="todos.length === 0">No Todo's!</span>
+    <ng-template #noItems>No Todo's!</ng-template>
   </div>
   <div class="card-actions">
-    <button (click)="addButtonClicked()">
+    <button
+      (click)="addButtonClicked()"
+      appTooltip="Add new Todo"
+      position="right"
+    >
       <i class="fas fa-plus"></i>
+      Add item
     </button>
   </div>
 </div>

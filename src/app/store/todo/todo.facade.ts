@@ -61,6 +61,8 @@ export class TodoFacade {
         due: null,
         createOn: null,
         createdBy: user.uid,
+        done: false,
+        doneOn: null,
       }))
     );
   }

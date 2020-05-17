@@ -1,4 +1,23 @@
 {
-  "indexes": [],
+  "indexes": [
+    {
+      "collectionGroup": "todos",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "createdBy",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "done",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "due",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ],
   "fieldOverrides": []
 }

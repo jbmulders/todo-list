@@ -10,7 +10,24 @@ export class TodoService {
   loadTodosForUser(userId: string): Observable<ITodo[]> {
     return this.afFirestore
       .collection<ITodo>('todos', (ref) =>
-        ref.where('createdBy', '==', userId).orderBy('due')
+        ref
+          .where('createdBy', '==', userId)
+          .where('done', '==', false)
+          .limit(100)
+          .orderBy('due')
+      )
+      .valueChanges();
+  }
+
+  // TODO: show these somewhere
+  loadDoneTodosForUser(userId: string): Observable<ITodo[]> {
+    return this.afFirestore
+      .collection<ITodo>('todos', (ref) =>
+        ref
+          .where('createdBy', '==', userId)
+          .where('done', '==', true)
+          .limit(100)
+          .orderBy('due')
       )
       .valueChanges();
   }
