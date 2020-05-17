@@ -7,6 +7,7 @@ export const authStoreName = 'auth';
 export interface IAuthState {
   isLoggedIn: boolean;
   user: firebase.UserInfo;
+  loggingIn: boolean;
 }
 
 export enum EAuthActionType {

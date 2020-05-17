@@ -1,1 +1,10 @@
-<app-login-card (doLogin)="doLogin($event)"></app-login-card>
+<app-login-card
+  (doLogin)="doLogin($event)"
+  *ngIf="(loggingIn$ | async) === false; else loader"
+></app-login-card>
+<ng-template #loader>
+  <div class="message-box">
+    <i class="fas fa-spinner"></i>
+    Loading...
+  </div>
+</ng-template>

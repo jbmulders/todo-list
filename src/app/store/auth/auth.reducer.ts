@@ -1,13 +1,9 @@
-import {
-  IAuthState,
-  EAuthActionType,
-  AuthAction,
-  LoginSuccess,
-} from './auth.actions';
+import { IAuthState, EAuthActionType, AuthAction } from './auth.actions';
 
 const initialState: IAuthState = {
-  isLoggedIn: false,
+  isLoggedIn: null,
   user: null,
+  loggingIn: true,
 };
 
 export function authReducer(
@@ -15,11 +11,24 @@ export function authReducer(
   action: AuthAction
 ): IAuthState {
   switch (action.type) {
+    case EAuthActionType.login:
+      return {
+        ...state,
+        loggingIn: true,
+      };
+
+    case EAuthActionType.logout:
+      return {
+        ...state,
+        loggingIn: true,
+      };
+
     case EAuthActionType.loginSuccess:
       return {
         ...state,
         isLoggedIn: true,
         user: action.payload.user,
+        loggingIn: false,
       };
 
     case EAuthActionType.logoutSuccess:
@@ -27,6 +36,7 @@ export function authReducer(
         ...state,
         isLoggedIn: false,
         user: null,
+        loggingIn: false,
       };
 
     default:
