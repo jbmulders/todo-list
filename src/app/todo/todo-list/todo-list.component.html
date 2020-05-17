@@ -6,7 +6,7 @@
         <th></th>
         <th>Title</th>
         <th>Description</th>
-        <th>Due</th>
+        <th center>Due</th>
         <th></th>
       </tr>
       <tr *ngFor="let todo of todos">
@@ -19,9 +19,9 @@
             (change)="checkedChanged($event, todo)"
           />
         </td>
-        <td>{{ todo.title }}</td>
+        <td fixed>{{ todo.title }}</td>
         <td>{{ todo.description }}</td>
-        <td center>{{ (todo.due | date: "dd/MM/yyyy") || "None" }}</td>
+        <td center fixed>{{ (todo.due | date: "dd/MM/yyyy") || "None" }}</td>
         <td center>
           <button
             (click)="rowClicked(todo)"

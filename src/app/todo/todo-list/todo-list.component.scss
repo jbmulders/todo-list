@@ -1,7 +1,7 @@
 @import "../../../colors";
 
 .card {
-  width: 500px;
+  width: 600px;
   min-height: 200px;
 }
 
@@ -22,8 +22,19 @@ td {
     border: none;
   }
   padding: 5px;
+  text-overflow: ellipsis;
+}
+th {
+  text-align: left;
+  padding: 5px;
 }
 
+td[fixed] {
+  width: 100px;
+  text-overflow: ellipsis;
+}
+
+th[center],
 td[center] {
   text-align: center;
 }
