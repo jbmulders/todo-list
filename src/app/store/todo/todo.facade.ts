@@ -60,12 +60,19 @@ export class TodoFacade {
         id: this.afFirestore.createId(),
         title: null,
         description: null,
-        due: null,
+        due: this.getNowFormatted(),
         createdOn: null,
         createdBy: user.uid,
         done: false,
         doneOn: null,
       }))
     );
+  }
+
+  private getNowFormatted(): string {
+    const d = new Date();
+    const month = `0${d.getMonth() + 1}`.slice(-2);
+    const date = `0${d.getDate()}`.slice(-2);
+    return `${d.getFullYear()}-${month}-${date}`;
   }
 }
