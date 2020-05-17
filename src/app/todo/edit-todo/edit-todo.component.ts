@@ -1,4 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
 import { ITodo } from '@model';
 import { NgForm } from '@angular/forms';
 
@@ -8,10 +16,14 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./edit-todo.component.scss'],
 })
 export class EditTodoComponent implements OnInit {
-  @Input() todo: ITodo;
+  @ViewChild('todoForm') todoForm: ElementRef;
+  @Input() set todo(value: ITodo) {
+    this.todoItem = { ...value };
+  }
   @Input() isNewTodo: boolean;
   @Output() saveClick = new EventEmitter<{ item: ITodo }>();
 
+  todoItem: ITodo;
   show: boolean;
 
   ngOnInit(): void {
@@ -26,7 +38,7 @@ export class EditTodoComponent implements OnInit {
 
   submitTodoForm(form: NgForm) {
     // TODO: properly bind to the form...
-    this.saveClick.emit({ item: { ...this.todo, ...form.value } });
+    this.saveClick.emit({ item: this.todoItem });
     this.close();
   }
 }

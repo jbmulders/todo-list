@@ -33,4 +33,9 @@ export class ListContainerComponent implements OnInit {
   saveTodo({ item }: { item: ITodo }) {
     this.todoFacade.handleSaveTodo(item);
   }
+
+  selectTodo({ item }: { item: ITodo }) {
+    this.todoFacade.handleSelectTodo(item);
+    this.todoDialog.open();
+  }
 }

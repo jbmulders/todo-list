@@ -8,9 +8,13 @@ import { ITodo } from '@model';
 })
 export class TodoListComponent {
   @Output() addClick = new EventEmitter<void>();
+  @Output() todoSelect = new EventEmitter<{ item: ITodo }>();
   @Input() todos: ITodo[];
 
   addButtonClicked() {
     this.addClick.emit();
+  }
+  rowClicked(item: ITodo) {
+    this.todoSelect.emit({ item });
   }
 }

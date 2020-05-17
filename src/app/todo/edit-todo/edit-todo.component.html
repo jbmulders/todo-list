@@ -5,16 +5,16 @@
     </div>
     <form
       #todoForm="ngForm"
+      *ngIf="todoItem?.id > ''"
       novalidate
       (ngSubmit)="submitTodoForm(todoForm)"
-      *ngIf="todo && todo.id > ''"
     >
       <div class="card-content">
         <input
           type="text"
           class="form-control"
           name="title"
-          ngModel
+          [(ngModel)]="todoItem.title"
           placeholder="title"
           required
         />
@@ -23,7 +23,7 @@
           type="text"
           class="form-control"
           name="description"
-          ngModel
+          [(ngModel)]="todoItem.description"
           placeholder="description"
           required
         />

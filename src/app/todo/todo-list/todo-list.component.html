@@ -3,9 +3,28 @@
     TODO List
   </div>
   <div class="card-content">
-    <div class="row" *ngFor="let todo of todos">
-      {{ todo.title }}
-    </div>
+    <table>
+      <tr>
+        <th></th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Due</th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let todo of todos">
+        <td>
+          <input type="checkbox" />
+        </td>
+        <td>{{ todo.title }}</td>
+        <td>{{ todo.description }}</td>
+        <td>{{ todo.due | date: "dd/MM/yyyy" }}</td>
+        <td>
+          <button (click)="rowClicked(todo)">
+            <i class="fas fa-edit"></i>
+          </button>
+        </td>
+      </tr>
+    </table>
     <span *ngIf="todos.length === 0">No Todo's!</span>
   </div>
   <div class="card-actions">

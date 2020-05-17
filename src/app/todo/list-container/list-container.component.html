@@ -1,6 +1,7 @@
 <app-todo-list
   [todos]="list$ | async"
   (addClick)="addTodoClicked()"
+  (todoSelect)="selectTodo($event)"
 ></app-todo-list>
 
 <app-edit-todo
