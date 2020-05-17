@@ -2,6 +2,7 @@
   [todos]="list$ | async"
   (addClick)="addTodoClicked()"
   (todoSelect)="selectTodo($event)"
+  (doneChange)="saveTodo($event)"
 ></app-todo-list>
 
 <app-edit-todo

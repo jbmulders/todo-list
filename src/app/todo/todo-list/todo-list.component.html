@@ -11,11 +11,17 @@
       </tr>
       <tr *ngFor="let todo of todos">
         <td>
-          <input type="checkbox" appTooltip="Mark as done" position="left" />
+          <input
+            type="checkbox"
+            appTooltip="Mark as done"
+            position="left"
+            [checked]="todo.done"
+            (change)="checkedChanged($event, todo)"
+          />
         </td>
         <td>{{ todo.title }}</td>
         <td>{{ todo.description }}</td>
-        <td>{{ todo.due | date: "dd/MM/yyyy" }}</td>
+        <td>{{ (todo.due | date: "dd/MM/yyyy") || "None" }}</td>
         <td>
           <button
             (click)="rowClicked(todo)"

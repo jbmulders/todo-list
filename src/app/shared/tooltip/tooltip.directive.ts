@@ -20,6 +20,7 @@ export class TooltipDirective {
   @HostListener('mouseenter') onMouseEnter() {
     if (!this.tooltip) {
       this.show();
+      setTimeout(() => this.hide(), 5000);
     }
   }
 

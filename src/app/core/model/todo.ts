@@ -3,7 +3,7 @@ export interface ITodo {
   description: string;
   due?: number;
   createdBy: string;
-  createOn: number;
+  createdOn: number;
   id: string;
   done: boolean;
   doneOn: number;

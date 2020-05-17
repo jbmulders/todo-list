@@ -8,6 +8,7 @@ import { ITodo } from '@model';
 })
 export class TodoListComponent {
   @Output() addClick = new EventEmitter<void>();
+  @Output() doneChange = new EventEmitter<{ item: ITodo }>();
   @Output() todoSelect = new EventEmitter<{ item: ITodo }>();
   @Input() todos: ITodo[];
 
@@ -16,5 +17,14 @@ export class TodoListComponent {
   }
   rowClicked(item: ITodo) {
     this.todoSelect.emit({ item });
+  }
+  checkedChanged(event: Event, todo: ITodo) {
+    this.doneChange.emit({
+      item: {
+        ...todo,
+        done: (event.target as HTMLInputElement).checked,
+        doneOn: Date.now(),
+      },
+    });
   }
 }
