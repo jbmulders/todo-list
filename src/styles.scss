@@ -79,6 +79,21 @@ select:disabled {
 input.ng-invalid.ng-touched {
   border: 2px solid $warn;
   color: $warn;
+  background-color: $warn-background-color;
+}
+
+input.ng-invalid.ng-touched::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: $warn-light;
+  opacity: 1; /* Firefox */
+}
+input.ng-invalid.ng-touched:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: $warn-light;
+}
+input.ng-invalid.ng-touched::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: $warn-light;
 }
 
 button[disabled]:hover,
