@@ -70,6 +70,11 @@ select:disabled {
   background-color: $middle-gray;
 }
 
+input.ng-invalid.ng-dirty {
+  border: 2px solid $warn;
+  color: $warn;
+}
+
 button[disabled]:hover,
 .button[disabled]:hover {
   background-color: $light-gray;

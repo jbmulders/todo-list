@@ -16,6 +16,7 @@
           name="title"
           [(ngModel)]="todoItem.title"
           placeholder="title"
+          maxlength="4"
           required
         />
 
@@ -24,7 +25,8 @@
           class="form-control"
           name="description"
           [(ngModel)]="todoItem.description"
-          placeholder="description"
+          placeholder="description [max 200]"
+          maxlength="200"
           required
         />
 
@@ -35,6 +37,7 @@
           name="due"
           ngModel
           placeholder="Due [todo: datepicker]"
+          pattern="[A-Za-z]{3}"
         />
       </div>
       <div class="card-actions">

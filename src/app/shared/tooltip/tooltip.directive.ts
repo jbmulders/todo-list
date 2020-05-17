@@ -18,29 +18,29 @@ export class TooltipDirective {
   constructor(private el: ElementRef, private renderer: Renderer2) {}
 
   @HostListener('mouseenter') onMouseEnter() {
-    if (!this.tooltip) {
-      this.show();
-      setTimeout(() => this.hide(), 5000);
-    }
+    this.show();
+    setTimeout(() => this.hide(), 5000);
   }
 
   @HostListener('mouseleave') onMouseLeave() {
-    if (this.tooltip) {
-      this.hide();
-    }
+    this.hide();
   }
 
   private show() {
-    this.createTooltip();
-    this.setStyle();
-    this.setPosition();
-    this.renderer.addClass(this.tooltip, 'ng-tooltip-show');
+    if (!this.tooltip) {
+      this.createTooltip();
+      this.setStyle();
+      this.setPosition();
+      this.renderer.addClass(this.tooltip, 'ng-tooltip-show');
+    }
   }
 
   private hide() {
-    this.renderer.removeClass(this.tooltip, 'ng-tooltip-show');
-    this.renderer.removeChild(document.body, this.tooltip);
-    this.tooltip = null;
+    if (this.tooltip) {
+      this.renderer.removeClass(this.tooltip, 'ng-tooltip-show');
+      this.renderer.removeChild(document.body, this.tooltip);
+      this.tooltip = null;
+    }
   }
 
   private createTooltip() {
