@@ -33,7 +33,12 @@
         </td>
       </tr>
     </table>
-    <ng-template #noItems>No Todo's!</ng-template>
+    <ng-template #noItems>
+      <div class="no-items">
+        <i class="fas fa-check-double"></i>
+        No Todo's!
+      </div>
+    </ng-template>
   </div>
   <div class="card-actions">
     <button
