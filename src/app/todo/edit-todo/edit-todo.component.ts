@@ -32,13 +32,20 @@ export class EditTodoComponent implements OnInit {
   open() {
     this.show = true;
   }
-  close() {
+  private close() {
     this.show = false;
   }
-
+  cancelClicked(event) {
+    // nasty hack to stop the form from closing after hitting 'enter' key
+    if (event.clientX > 0 && event.clientY > 0) {
+      this.close();
+    }
+  }
   submitTodoForm(form: NgForm) {
     // TODO: properly bind to the form...
-    this.saveClick.emit({ item: this.todoItem });
-    this.close();
+    if (form.valid) {
+      this.saveClick.emit({ item: this.todoItem });
+      this.close();
+    }
   }
 }

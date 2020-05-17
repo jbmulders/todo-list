@@ -16,7 +16,7 @@
           name="title"
           [(ngModel)]="todoItem.title"
           placeholder="title"
-          maxlength="4"
+          maxlength="100"
           required
         />
 
@@ -30,18 +30,17 @@
           required
         />
 
-        <!-- TODO: turn this into a date picker -->
         <input
-          type="text"
+          type="date"
           class="form-control"
           name="due"
-          ngModel
-          placeholder="Due [todo: datepicker]"
-          pattern="[A-Za-z]{3}"
+          [(ngModel)]="todoItem.due"
+          placeholder="Due date"
+          required
         />
       </div>
       <div class="card-actions">
-        <button (click)="close()">
+        <button (click)="cancelClicked($event)" tabindex="-1">
           Cancel
         </button>
         <button type="submit" [disabled]="todoForm.invalid">

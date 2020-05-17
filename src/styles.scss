@@ -45,6 +45,8 @@ button[disabled],
 input[type="text"],
 input[type="password"],
 input[type="email"],
+input[type="number"],
+input[type="date"],
 select {
   padding: 8px 15px;
   margin: 8px 0;
@@ -58,6 +60,8 @@ select {
 input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
 select:focus {
   background-color: $white;
 }
@@ -65,12 +69,14 @@ select:focus {
 input[type="text"]:disabled,
 input[type="password"]:disabled,
 input[type="email"]:disabled,
+input[type="number"]:disabled,
+input[type="date"]:disabled,
 select:disabled {
   border: 2px solid $dark-gray;
   background-color: $middle-gray;
 }
 
-input.ng-invalid.ng-dirty {
+input.ng-invalid.ng-touched {
   border: 2px solid $warn;
   color: $warn;
 }
