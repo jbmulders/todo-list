@@ -1,11 +1,6 @@
 @import "../../../mixins";
-.container {
-  @include page;
+.overlay {
   @include center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.5);
 }
 .card {
   width: 400px;

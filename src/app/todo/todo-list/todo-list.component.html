@@ -10,7 +10,7 @@
         <th></th>
       </tr>
       <tr *ngFor="let todo of todos">
-        <td>
+        <td center>
           <input
             type="checkbox"
             appTooltip="Mark as done"
@@ -21,8 +21,8 @@
         </td>
         <td>{{ todo.title }}</td>
         <td>{{ todo.description }}</td>
-        <td>{{ (todo.due | date: "dd/MM/yyyy") || "None" }}</td>
-        <td>
+        <td center>{{ (todo.due | date: "dd/MM/yyyy") || "None" }}</td>
+        <td center>
           <button
             (click)="rowClicked(todo)"
             appTooltip="Edit item"

@@ -1,0 +1,24 @@
+<button
+  (click)="open()"
+  class="open"
+  appTooltip="Open sidebar"
+  position="right"
+>
+  <i class="fas fa-arrow-right"></i>
+</button>
+
+<div class="overlay" *ngIf="show">
+  <div class="sidebar">
+    <div headerRow>
+      Menu
+      <span flex></span>
+      <button (click)="close()">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+    </div>
+    <div content>
+      <ng-content></ng-content>
+    </div>
+  </div>
+  <div (click)="close()" class="rest-of-page"></div>
+</div>

@@ -1,0 +1,44 @@
+@import "../../../colors";
+$width: 300px;
+
+button.open {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+}
+
+div.sidebar {
+  width: $width;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: $middle-gray;
+  height: 100vh;
+  overflow: hidden;
+  padding: 10px;
+
+  [headerRow] {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: $primary;
+    padding: 10px 0;
+  }
+
+  [content] {
+    height: 100%;
+    overflow-y: auto;
+  }
+}
+
+.rest-of-page {
+  position: fixed;
+  width: calc(100vw - 300px);
+  height: 100vh;
+  top: 0;
+  left: $width;
+}

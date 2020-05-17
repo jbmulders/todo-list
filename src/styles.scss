@@ -1,5 +1,5 @@
 @import "./colors";
-
+@import "./mixins";
 html {
   height: 100vh;
   overflow: hidden;
@@ -160,4 +160,16 @@ div.card {
     font-size: 1.4em;
     margin: 3px;
   }
+}
+
+[flex] {
+  flex: 1;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  @include page;
 }
