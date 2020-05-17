@@ -173,3 +173,16 @@ div.card {
   background: rgba(0, 0, 0, 0.5);
   @include page;
 }
+
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: $middle-gray;
+}
+::-webkit-scrollbar-thumb {
+  background: $primary;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: $primary-dark;
+}

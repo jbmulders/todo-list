@@ -1,15 +1,20 @@
 @import "../../../colors";
 
 .card {
-  width: 600px;
+  width: 700px;
   min-height: 200px;
+  .card-content {
+    max-height: 600px;
+    overflow-y: auto;
+  }
 }
 
 table {
   border-collapse: collapse;
 }
-tr:first-child {
-  border-bottom: 2px solid $primary;
+thead {
+  // border-bottom: 2px solid $primary;
+  color: $primary;
 }
 th:first-child,
 td:first-child {
@@ -22,16 +27,22 @@ td {
     border: none;
   }
   padding: 5px;
-  text-overflow: ellipsis;
 }
 th {
   text-align: left;
   padding: 5px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 9;
+  background-color: $darker-gray;
 }
 
-td[fixed] {
+td[short] {
+  width: 40px;
+}
+td[middle] {
   width: 100px;
-  text-overflow: ellipsis;
 }
 
 th[center],

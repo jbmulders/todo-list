@@ -2,36 +2,40 @@
   <div class="card-header">TODOs ({{ todos.length }})</div>
   <div class="card-content">
     <table *ngIf="todos?.length > 0; else noItems">
-      <tr>
-        <th></th>
-        <th>Title</th>
-        <th>Description</th>
-        <th center>Due</th>
-        <th></th>
-      </tr>
-      <tr *ngFor="let todo of todos">
-        <td center>
-          <input
-            type="checkbox"
-            appTooltip="Mark as done"
-            position="left"
-            [checked]="todo.done"
-            (change)="checkedChanged($event, todo)"
-          />
-        </td>
-        <td fixed>{{ todo.title }}</td>
-        <td>{{ todo.description }}</td>
-        <td center fixed>{{ (todo.due | date: "dd/MM/yyyy") || "None" }}</td>
-        <td center>
-          <button
-            (click)="rowClicked(todo)"
-            appTooltip="Edit item"
-            position="right"
-          >
-            <i class="fas fa-edit"></i>
-          </button>
-        </td>
-      </tr>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Title</th>
+          <th>Description</th>
+          <th center>Due</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let todo of todos">
+          <td center short>
+            <input
+              type="checkbox"
+              appTooltip="Mark as done"
+              position="left"
+              [checked]="todo.done"
+              (change)="checkedChanged($event, todo)"
+            />
+          </td>
+          <td middle>{{ todo.title }}</td>
+          <td>{{ todo.description }}</td>
+          <td center middle>{{ (todo.due | date: "dd/MM/yyyy") || "None" }}</td>
+          <td center short>
+            <button
+              (click)="rowClicked(todo)"
+              appTooltip="Edit item"
+              position="right"
+            >
+              <i class="fas fa-edit"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
     </table>
     <ng-template #noItems>
       <div class="message-box">
