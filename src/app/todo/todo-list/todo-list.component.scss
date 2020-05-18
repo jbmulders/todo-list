@@ -15,10 +15,10 @@ table {
 thead {
   color: $primary;
 }
-th:first-child,
-td:first-child {
-  border-right: 2px solid $primary;
-}
+// th:first-child,
+// td:first-child {
+//   border-right: 2px solid $primary;
+// }
 tr:nth-child(odd) {
   background-color: #444;
 }
