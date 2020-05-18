@@ -13,14 +13,15 @@ table {
   border-collapse: collapse;
 }
 thead {
-  // border-bottom: 2px solid $primary;
   color: $primary;
 }
 th:first-child,
 td:first-child {
   border-right: 2px solid $primary;
 }
-
+tr:nth-child(odd) {
+  background-color: #444;
+}
 td {
   button {
     padding: 0;
