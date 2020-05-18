@@ -41,7 +41,7 @@ export class TodoFacade {
   }
 
   handleSaveTodo(todo: ITodo) {
-    if (!todo.createdOn) {
+    if (todo.createdOn === null) {
       todo.createdOn = Date.now();
     }
     this.store.dispatch(new SaveTodo({ todo }));
