@@ -70,9 +70,6 @@ export class TodoFacade {
   }
 
   private getNowFormatted(): string {
-    const d = new Date();
-    const month = `0${d.getMonth() + 1}`.slice(-2);
-    const date = `0${d.getDate()}`.slice(-2);
-    return `${d.getFullYear()}-${month}-${date}`;
+    return new Date().toISOString().split('T')[0];
   }
 }
