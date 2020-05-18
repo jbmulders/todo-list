@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class AuthService {
-  get authState$() {
+  get authState$(): Observable<firebase.UserInfo> {
     return this.fbAuth.authState.pipe(map((fbUser) => fbUser?.providerData[0]));
   }
 
