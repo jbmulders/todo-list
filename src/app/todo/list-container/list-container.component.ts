@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ITodo } from '@model';
 import { TodoFacade } from '@store';
@@ -14,6 +14,7 @@ export class ListContainerComponent implements OnInit {
   list$: Observable<ITodo[]>;
   isNew$: Observable<boolean>;
   selectedTodo$: Observable<ITodo>;
+  loading$: Observable<boolean>;
 
   constructor(private todoFacade: TodoFacade) {}
 
@@ -21,6 +22,7 @@ export class ListContainerComponent implements OnInit {
     this.list$ = this.todoFacade.todos$;
     this.isNew$ = this.todoFacade.isNew$;
     this.selectedTodo$ = this.todoFacade.selectedTodo$;
+    this.loading$ = this.todoFacade.loading$;
 
     this.todoFacade.handleLoadTodos();
   }

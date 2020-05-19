@@ -3,6 +3,7 @@
   (addClick)="addTodoClicked()"
   (todoSelect)="selectTodo($event)"
   (doneChange)="saveTodo($event)"
+  *ngIf="(loading$ | async) === false; else loader"
 ></app-todo-list>
 
 <app-edit-todo
@@ -11,3 +12,10 @@
   [todo]="selectedTodo$ | async"
   (saveClick)="saveTodo($event)"
 ></app-edit-todo>
+
+<ng-template #loader>
+  <div class="message-box">
+    <i class="fas fa-spinner"></i>
+    Loading...
+  </div>
+</ng-template>

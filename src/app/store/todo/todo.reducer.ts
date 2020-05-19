@@ -4,6 +4,7 @@ const initialState: ITodoState = {
   list: [],
   selected: null,
   isNew: null,
+  loading: null,
 };
 
 export function todoReducer(
@@ -11,10 +12,23 @@ export function todoReducer(
   action: TodoAction
 ): ITodoState {
   switch (action.type) {
+    case ETodoActionType.getList:
+      return {
+        ...state,
+        loading: true,
+      };
+
     case ETodoActionType.getListSuccess:
       return {
         ...state,
         list: action.payload.list,
+        loading: false,
+      };
+
+    case ETodoActionType.getListError:
+      return {
+        ...state,
+        loading: false,
       };
 
     case ETodoActionType.setSelectedTodo:

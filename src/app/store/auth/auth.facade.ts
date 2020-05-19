@@ -15,6 +15,7 @@ import {
 } from './auth.actions';
 import { authStoreName } from './auth.actions';
 import { AuthService } from 'app/auth/auth-service/auth.service';
+import { take } from 'rxjs/operators';
 
 const featureSelector = createFeatureSelector<IAuthState>(authStoreName);
 const getIsLoggedIn = createSelector(
@@ -37,11 +38,13 @@ export class AuthFacade {
     private store: Store<IAuthState>,
     private authService: AuthService
   ) {
-    authService.authState$.subscribe((user) =>
-      user
-        ? store.dispatch(new LoginSuccess({ user }))
-        : store.dispatch(new LogoutSuccess())
-    );
+    authService.authState$
+      .pipe(take(1))
+      .subscribe((user) =>
+        user
+          ? store.dispatch(new LoginSuccess({ user }))
+          : store.dispatch(new LogoutSuccess())
+      );
   }
 
   handleLogin(credentials: ICredential) {

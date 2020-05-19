@@ -39,6 +39,12 @@ export function authReducer(
         loggingIn: false,
       };
 
+    case EAuthActionType.loginError || EAuthActionType.logoutError:
+      return {
+        ...state,
+        loggingIn: false,
+      };
+
     default:
       return state;
   }

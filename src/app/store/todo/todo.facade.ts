@@ -23,12 +23,14 @@ const featureSelector = createFeatureSelector<ITodoState>(todoStoreName);
 const getList = createSelector(featureSelector, (state) => state?.list);
 const getSelected = createSelector(featureSelector, (state) => state?.selected);
 const getIsNew = createSelector(featureSelector, (state) => state?.isNew);
+const getLoading = createSelector(featureSelector, (state) => state?.loading);
 
 @Injectable()
 export class TodoFacade {
   todos$ = this.store.pipe(select(getList));
   selectedTodo$ = this.store.pipe(select(getSelected));
   isNew$ = this.store.pipe(select(getIsNew));
+  loading$ = this.store.pipe(select(getLoading));
 
   constructor(
     private rootFacade: RootFacade,

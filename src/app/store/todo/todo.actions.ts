@@ -7,6 +7,7 @@ export interface ITodoState {
   list: ITodo[];
   selected: ITodo;
   isNew: boolean;
+  loading: boolean;
 }
 
 export enum ETodoActionType {
