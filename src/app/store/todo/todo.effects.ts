@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
-import { mergeMap, map, catchError, concatMap } from 'rxjs/operators';
+import { mergeMap, map, catchError, concatMap, filter } from 'rxjs/operators';
 import { Action } from '@ngrx/store';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import {
@@ -33,6 +33,7 @@ export class TodoEffects {
     ofType(ETodoActionType.getList),
     mergeMap((action: GetList) =>
       this.rootFacade.user$.pipe(
+        filter((user) => (user ? true : false)),
         concatMap((user) =>
           this.todoService
             .loadTodosForUser(user.uid)
