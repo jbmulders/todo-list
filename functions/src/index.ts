@@ -1,8 +1,32 @@
 import * as functions from 'firebase-functions';
+import * as admin from 'firebase-admin';
 
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-// export const helloWorld = functions.https.onRequest((request, response) => {
-//  response.send("Hello from Firebase!");
-// });
+import { UserService } from './services/user-service';
+import { EchoService } from './services/echo-service';
+
+admin.initializeApp();
+
+const REGION = 'europe-west2'; //London
+
+const userService = new UserService(admin.firestore());
+const echoService = new EchoService(admin.firestore());
+
+/**
+ * UserService
+ */
+
+export const getUserDataEx = functions
+  .region(REGION)
+  .https.onCall(userService.getUserData.bind(userService));
+
+export const registerUserEx = functions
+  .region(REGION)
+  .https.onCall(userService.registerUser.bind(userService));
+
+/**
+ * EchoService
+ */
+
+export const updateWebPaymentsEx = functions
+  .region(REGION)
+  .https.onRequest(echoService.onRequest.bind(echoService));
