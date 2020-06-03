@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
@@ -15,6 +15,7 @@ import { SharedModule } from './shared/shared.module';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    HttpClientModule,
     CoreModule,
     AppRoutingModule,
     SharedModule,

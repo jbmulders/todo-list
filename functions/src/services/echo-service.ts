@@ -17,14 +17,12 @@ const requestDefaults = {
   contentType: 'application/json',
   key: functions.config().echo.key,
 };
-
 const responseDefealts = {
-  options: 'application-json',
+  options: '',
   success: { message: 'OK' },
   unauthorized: { message: 'Bad request' },
   error: { message: 'Internal error' },
 };
-
 const firestoreDefaults = {
   collection: 'EchoResponses',
 };
@@ -39,6 +37,11 @@ export class EchoService {
     request: functions.https.Request,
     response: functions.Response,
   ): Promise<void> {
+    response.set(
+      'Access-Control-Allow-Origin',
+      `${requestDefaults.protocol}://${requestDefaults.hostname}`,
+    );
+
     if (this.validatePreflightRequest(request)) {
       this.handlePreflightRequest(response);
     } else if (this.validateMainRequest(request)) {
@@ -57,8 +60,13 @@ export class EchoService {
     return req.method === 'OPTIONS';
   }
 
+  // for some reason this method, hostname and protocol check still need to be added here,
+  // I was still able to trigger the function from the browser if these are not present...
   private validateMainRequest(req: functions.https.Request): boolean {
     return (
+      req.method === requestDefaults.method &&
+      req.hostname === requestDefaults.hostname &&
+      req.protocol === requestDefaults.protocol &&
       req.get('content-type') === requestDefaults.contentType &&
       req.get('auth') === requestDefaults.key
     );
@@ -72,10 +80,6 @@ export class EchoService {
   private handlePreflightRequest(
     response: functions.Response,
   ): functions.Response {
-    response.set(
-      'Access-Control-Allow-Origin',
-      `${requestDefaults.protocol}://${requestDefaults.hostname}`,
-    );
     response.set(
       'Access-Control-Allow-Headers',
       Object.values(requestDefaults.headers),
@@ -112,7 +116,7 @@ export class EchoService {
   private updateFirestore(
     data: IDocumentData,
   ): Promise<FirebaseFirestore.DocumentReference> {
-    return this.firestore.collection(firestoreDefaults.collection).add(data);
+    return this.firestore.collection(firestoreDefaults.collection).add(data); // adds a record to the collection under a random ID
   }
 }
 

@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { ITodo } from '@model';
 import { TodoFacade } from '@store';
 import { EditTodoComponent } from '../edit-todo/edit-todo.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-list-container',
@@ -16,7 +17,7 @@ export class ListContainerComponent implements OnInit {
   selectedTodo$: Observable<ITodo>;
   loading$: Observable<boolean>;
 
-  constructor(private todoFacade: TodoFacade) {}
+  constructor(private todoFacade: TodoFacade, private http: HttpClient) {}
 
   ngOnInit(): void {
     this.list$ = this.todoFacade.todos$;
