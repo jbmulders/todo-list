@@ -1,8 +1,6 @@
-<button
-  class="icon"
-  (click)="logoutClick()"
-  appTooltip="Logout"
+<app-icon-button
+  (handleClick)="logoutClick()"
+  icon="lock"
+  tooltip="Logout"
   position="bottom"
->
-  <i class="material-icons">lock</i>
-</button>
+></app-icon-button>

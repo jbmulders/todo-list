@@ -27,7 +27,7 @@ export class TooltipDirective {
   }
 
   private show() {
-    if (!this.tooltip) {
+    if (!this.tooltip && this.tooltipText > '') {
       this.createTooltip();
       this.setStyle();
       this.setPosition();
@@ -48,7 +48,7 @@ export class TooltipDirective {
 
     this.renderer.appendChild(
       this.tooltip,
-      this.renderer.createText(this.tooltipText)
+      this.renderer.createText(this.tooltipText),
     );
 
     this.renderer.appendChild(document.body, this.tooltip);
@@ -61,22 +61,22 @@ export class TooltipDirective {
     this.renderer.setStyle(
       this.tooltip,
       '-webkit-transition',
-      `opacity ${this.delay}ms`
+      `opacity ${this.delay}ms`,
     );
     this.renderer.setStyle(
       this.tooltip,
       '-moz-transition',
-      `opacity ${this.delay}ms`
+      `opacity ${this.delay}ms`,
     );
     this.renderer.setStyle(
       this.tooltip,
       '-o-transition',
-      `opacity ${this.delay}ms`
+      `opacity ${this.delay}ms`,
     );
     this.renderer.setStyle(
       this.tooltip,
       'transition',
-      `opacity ${this.delay}ms`
+      `opacity ${this.delay}ms`,
     );
     this.renderer.setStyle(this.tooltip, 'position', 'fixed');
     this.renderer.setStyle(this.tooltip, 'background-color', '#000');
