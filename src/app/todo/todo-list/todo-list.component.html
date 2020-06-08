@@ -3,7 +3,7 @@
     <table *ngIf="todos?.length > 0; else noItems">
       <thead>
         <tr>
-          <th></th>
+          <th><i class="material-icons">check</i></th>
           <th>Title</th>
           <th>Description</th>
           <th center>Due</th>
@@ -23,14 +23,14 @@
           </td>
           <td middle>{{ todo.title }}</td>
           <td>{{ todo.description }}</td>
-          <td center middle>{{ (todo.due | date: "dd/MM/yyyy") || "None" }}</td>
+          <td center middle>{{ (todo.due | date: 'dd/MM/yyyy') || 'None' }}</td>
           <td center short>
             <button
               (click)="rowClicked(todo)"
               appTooltip="Edit item"
               position="right"
             >
-              <i class="fas fa-edit"></i>
+              <i class="material-icons">edit</i>
             </button>
           </td>
         </tr>
@@ -38,7 +38,7 @@
     </table>
     <ng-template #noItems>
       <div class="message-box">
-        <i class="fas fa-check-double"></i>
+        <i class="material-icons">done_all</i>
         No Todo's!
       </div>
     </ng-template>
@@ -49,7 +49,7 @@
       appTooltip="Add new Todo"
       position="right"
     >
-      <i class="fas fa-plus"></i>
+      <i class="material-icons">add</i>
       Add item
     </button>
   </div>

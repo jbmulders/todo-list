@@ -4,11 +4,11 @@ import * as admin from 'firebase-admin';
 // DEFAULTS
 // TODO:
 // - update to match request from 3rd party
-// - import from a defaults file (?)
+// - import from a defaults file (??)
 // - customize where needed
 const requestDefaults = {
-  hostname: 'mydomain.com',
   protocol: 'https',
+  allowOrigins: ['http://origin1', 'http://origin2'],
   method: 'POST',
   headers: {
     auth: 'auth',
@@ -37,11 +37,13 @@ export class EchoService {
     request: functions.https.Request,
     response: functions.Response,
   ): Promise<void> {
-    response.set(
-      'Access-Control-Allow-Origin',
-      `${requestDefaults.protocol}://${requestDefaults.hostname}`,
-    );
+    // set CORS header [as described in the docs]
+    response.set('Access-Control-Allow-Origin', requestDefaults.allowOrigins);
 
+    // check if the incoming request is:
+    // - cors preflight (OPTIONS)
+    // - main (POST)
+    // If neither -> reject
     if (this.validatePreflightRequest(request)) {
       this.handlePreflightRequest(response);
     } else if (this.validateMainRequest(request)) {
@@ -60,15 +62,19 @@ export class EchoService {
     return req.method === 'OPTIONS';
   }
 
-  // for some reason this method, hostname and protocol check still need to be added here,
-  // I was still able to trigger the function from the browser if these are not present...
+  /**
+   * TODO: optimize this based on the 3rd party request
+   */
   private validateMainRequest(req: functions.https.Request): boolean {
     return (
       req.method === requestDefaults.method &&
-      req.hostname === requestDefaults.hostname &&
+      requestDefaults.allowOrigins.indexOf(
+        `${req.protocol}://${req.hostname}`,
+      ) > -1 &&
       req.protocol === requestDefaults.protocol &&
-      req.get('content-type') === requestDefaults.contentType &&
-      req.get('auth') === requestDefaults.key
+      req.get(requestDefaults.headers.contentType) ===
+        requestDefaults.contentType &&
+      req.get(requestDefaults.headers.auth) === requestDefaults.key
     );
   }
 
@@ -111,7 +117,7 @@ export class EchoService {
 
   /*
    * UTILITIES
-   * Customize where needed
+   * Customize where needed | maybe move this to a utilities class...
    */
   private updateFirestore(
     data: IDocumentData,

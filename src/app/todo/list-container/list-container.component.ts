@@ -17,7 +17,7 @@ export class ListContainerComponent implements OnInit {
   selectedTodo$: Observable<ITodo>;
   loading$: Observable<boolean>;
 
-  constructor(private todoFacade: TodoFacade, private http: HttpClient) {}
+  constructor(private todoFacade: TodoFacade) {}
 
   ngOnInit(): void {
     this.list$ = this.todoFacade.todos$;

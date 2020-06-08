@@ -2,22 +2,11 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ITodo } from '@model';
 import { Observable, from, of } from 'rxjs';
-import {
-  map,
-  filter,
-  switchMap,
-  mergeMap,
-  concatMap,
-  catchError,
-} from 'rxjs/operators';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable()
 export class TodoService {
-  constructor(
-    private afFirestore: AngularFirestore,
-    private afAuth: AngularFireAuth
-  ) {}
+  constructor(private afFirestore: AngularFirestore) {}
 
   loadTodosForUser(userId: string): Observable<ITodo[]> {
     return this.afFirestore
@@ -25,12 +14,12 @@ export class TodoService {
         ref
           .where('createdBy', '==', userId)
           .where('done', '==', false)
-          .limit(100)
+          .limit(100),
       )
       .valueChanges()
       .pipe(
         map((todos) => todos.sort((a, b) => (a.due > b.due ? 1 : -1))),
-        catchError((err) => of([]))
+        catchError((err) => of([])),
       );
   }
 
@@ -41,7 +30,7 @@ export class TodoService {
         ref
           .where('createdBy', '==', userId)
           .where('done', '==', true)
-          .limit(100)
+          .limit(100),
       )
       .valueChanges();
   }

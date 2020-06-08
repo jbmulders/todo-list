@@ -1,5 +1,30 @@
-@import "./colors";
-@import "./mixins";
+@import './colors';
+@import './mixins';
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(material-design-icons/iconfont/MaterialIcons-Regular.woff2)
+    format('woff2');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
 html {
   height: 100vh;
   overflow: hidden;
@@ -27,6 +52,9 @@ button,
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 button:hover,
@@ -42,11 +70,21 @@ button[disabled],
   cursor: auto;
 }
 
-input[type="text"],
-input[type="password"],
-input[type="email"],
-input[type="number"],
-input[type="date"],
+button.icon,
+.button.icon {
+  width: 50px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  border-radius: 50%;
+}
+
+input[type='text'],
+input[type='password'],
+input[type='email'],
+input[type='number'],
+input[type='date'],
 select {
   padding: 8px 15px;
   margin: 8px 0;
@@ -57,20 +95,20 @@ select {
   box-sizing: border-box;
 }
 
-input[type="text"]:focus,
-input[type="password"]:focus,
-input[type="email"]:focus,
-input[type="number"]:focus,
-input[type="date"]:focus,
+input[type='text']:focus,
+input[type='password']:focus,
+input[type='email']:focus,
+input[type='number']:focus,
+input[type='date']:focus,
 select:focus {
   background-color: $white;
 }
 
-input[type="text"]:disabled,
-input[type="password"]:disabled,
-input[type="email"]:disabled,
-input[type="number"]:disabled,
-input[type="date"]:disabled,
+input[type='text']:disabled,
+input[type='password']:disabled,
+input[type='email']:disabled,
+input[type='number']:disabled,
+input[type='date']:disabled,
 select:disabled {
   border: 2px solid $dark-gray;
   background-color: $middle-gray;

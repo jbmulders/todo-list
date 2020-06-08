@@ -1,10 +1,10 @@
 <button
   (click)="open()"
-  class="open"
+  class="icon open"
   appTooltip="Open sidebar"
   position="right"
 >
-  <i class="fas fa-arrow-right"></i>
+  <i class="material-icons">keyboard_arrow_right</i>
 </button>
 
 <div class="overlay" *ngIf="show">
@@ -12,8 +12,8 @@
     <div headerRow>
       Menu
       <span flex></span>
-      <button (click)="close()">
-        <i class="fas fa-arrow-left"></i>
+      <button (click)="close()" class="icon">
+        <i class="material-icons md-36">keyboard_arrow_left</i>
       </button>
     </div>
     <div content>
