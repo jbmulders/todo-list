@@ -1,20 +1,10 @@
-<app-tabs-group>
-  <app-tab label="ToDo's">
-    <app-todo-list
-      [todos]="list$ | async"
-      (addClick)="addTodoClicked()"
-      (todoSelect)="selectTodo($event)"
-      (doneChange)="saveTodo($event)"
-      *ngIf="(loading$ | async) === false; else loader"
-    ></app-todo-list>
-  </app-tab>
-  <app-tab label="test 2">
-    <h2>Test 2 tab content...</h2>
-  </app-tab>
-  <app-tab label="test 3">
-    <h2>Test 3 tab content...</h2>
-  </app-tab>
-</app-tabs-group>
+<app-todo-list
+  [todos]="list$ | async"
+  (addClick)="addTodoClicked()"
+  (todoSelect)="selectTodo($event)"
+  (doneChange)="saveTodo($event)"
+  *ngIf="(loading$ | async) === false; else loader"
+></app-todo-list>
 
 <app-edit-todo
   #todoDialog

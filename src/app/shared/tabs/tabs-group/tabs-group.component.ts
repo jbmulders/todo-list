@@ -7,16 +7,14 @@ import { TabComponent } from '../tab/tab.component';
   styleUrls: ['./tabs-group.component.scss'],
 })
 export class TabsGroupComponent {
-  @Output() selectedTabChanged = new EventEmitter<TabComponent>(null);
+  @Output() selectedTabChange = new EventEmitter<TabComponent>(null);
 
   tabs: TabComponent[] = [];
 
   selectTab(selectedTab: TabComponent) {
-    this.tabs.forEach((tab) => {
-      tab.selected = false;
-    });
+    this.tabs.map((tab) => (tab.selected = false));
     selectedTab.selected = true;
-    this.selectedTabChanged.next(selectedTab);
+    this.selectedTabChange.next(selectedTab);
   }
 
   addTab(tab: TabComponent) {
