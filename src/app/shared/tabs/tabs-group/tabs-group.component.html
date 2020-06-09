@@ -1,0 +1,10 @@
+<ul>
+  <li
+    *ngFor="let tab of tabs"
+    (click)="selectTab(tab)"
+    [class]="tab.selected ? 'selected' : ''"
+  >
+    {{ tab.label }}
+  </li>
+</ul>
+<ng-content></ng-content>
