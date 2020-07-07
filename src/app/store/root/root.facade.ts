@@ -8,16 +8,17 @@ import {
 import { IRootState, rootStoreName } from './root.actions';
 import { Router } from '@angular/router';
 import { DoLogout } from '../auth/auth.actions';
+import { of } from 'rxjs';
 
 const featureSelector = createFeatureSelector<IRootState>(rootStoreName);
 const getIsLoggedIn = createSelector(
   featureSelector,
-  (state) => state?.isLoggedIn
+  (state) => state?.isLoggedIn,
 );
 const getCurrentUser = createSelector(featureSelector, (state) => state?.user);
 const getToastMessage = createSelector(
   featureSelector,
-  (state) => state?.message
+  (state) => state?.message,
 );
 
 @Injectable()
@@ -30,10 +31,13 @@ export class RootFacade {
     this.isLoggedIn$.subscribe((loggedIn) =>
       loggedIn
         ? this.router.navigate(['/todo/list'])
-        : this.router.navigate(['/auth/login'])
+        : this.router.navigate(['/auth/login']),
     );
   }
 
+  getUserRole$() {
+    return of('TEST');
+  }
   handleLogout() {
     this.store.dispatch(new DoLogout());
   }

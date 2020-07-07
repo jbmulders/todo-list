@@ -20,11 +20,11 @@ import { take } from 'rxjs/operators';
 const featureSelector = createFeatureSelector<IAuthState>(authStoreName);
 const getIsLoggedIn = createSelector(
   featureSelector,
-  (state) => state?.isLoggedIn
+  (state) => state?.isLoggedIn,
 );
 const getLoggingIn = createSelector(
   featureSelector,
-  (state) => state?.loggingIn
+  (state) => state?.loggingIn,
 );
 const getCurrentUser = createSelector(featureSelector, (state) => state?.user);
 
@@ -36,14 +36,14 @@ export class AuthFacade {
 
   constructor(
     private store: Store<IAuthState>,
-    private authService: AuthService
+    private authService: AuthService,
   ) {
     authService.authState$
       .pipe(take(1))
       .subscribe((user) =>
         user
           ? store.dispatch(new LoginSuccess({ user }))
-          : store.dispatch(new LogoutSuccess())
+          : store.dispatch(new LogoutSuccess()),
       );
   }
 

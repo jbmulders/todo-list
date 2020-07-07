@@ -7,6 +7,7 @@ import { TooltipDirective } from './tooltip/tooltip.directive';
 import { FormsModule } from '@angular/forms';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { IconButtonComponent } from './icon-button/icon-button.component';
+import { ForRolesDirective } from './for-roles/for-roles.directive';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { IconButtonComponent } from './icon-button/icon-button.component';
     TooltipDirective,
     SidebarComponent,
     IconButtonComponent,
+    ForRolesDirective,
   ],
   imports: [CommonModule, FormsModule, TabsModule],
   exports: [
@@ -22,6 +24,7 @@ import { IconButtonComponent } from './icon-button/icon-button.component';
     ToastComponent,
     LogoutComponent,
     TooltipDirective,
+    ForRolesDirective,
     FormsModule,
     SidebarComponent,
     IconButtonComponent,
