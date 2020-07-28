@@ -21,28 +21,28 @@ describe('ToastComponent [u]', () => {
 
   it('should set `show` to false on init', fakeAsync(() => {
     // arrange
-    component.error$ = of(null);
+    component.toastMessage = of(null);
 
     // act
     component.ngOnInit();
     tick(100);
 
     // assert
-    expect(component.show).toBeFalse();
+    expect(component.show).toEqual(false);
 
     tick(4000);
   }));
 
   it('should set `show` to true when new message is emitted', fakeAsync(() => {
     // arrange
-    component.error$ = of(mockData);
+    component.toastMessage = of(mockData);
 
     // act
     component.ngOnInit();
     tick(100);
 
     // assert
-    expect(component.show).toBeTrue();
+    expect(component.show).toEqual(true);
 
     // this makes sure we dont get a 'timer in progress error'
     tick(4000);
@@ -50,14 +50,14 @@ describe('ToastComponent [u]', () => {
 
   it('should set `show` to false 4 seconds after new message is emitted', fakeAsync(() => {
     // arrange
-    component.error$ = of(mockData);
+    component.toastMessage = of(mockData);
 
     // act
     component.ngOnInit();
     tick(5000);
 
     // assert
-    expect(component.show).toBeFalse();
+    expect(component.show).toEqual(false);
   }));
 });
 
@@ -74,7 +74,7 @@ describe('ToastComponent [i]', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ToastComponent);
     component = fixture.componentInstance;
-    component.error$ = of(mockData);
+    component.toastMessage = of(mockData);
     fixture.detectChanges();
   });
 
@@ -101,7 +101,7 @@ describe('ToastComponent [i]', () => {
     const messageContainer = fixture.debugElement.query(By.css('div'));
 
     expect(messageContainer.nativeElement.textContent.trim()).toEqual(
-      mockData.message
+      mockData.message,
     );
   });
 });

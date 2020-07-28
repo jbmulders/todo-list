@@ -15,7 +15,8 @@
     "paths": {
       "@model": ["app/core/model"],
       "@store": ["app/store"]
-    }
+    },
+    "types": ["jest"]
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
