@@ -67,19 +67,28 @@
       "^.+\\.(ts|js|html)$": "ts-jest"
     },
     "setupFilesAfterEnv": [
-      "<rootDir>/src/setup-jest.ts"
+      "./src/setup-jest.ts"
     ],
     "moduleNameMapper": {
       "@app/(.*)": "<rootDir>/src/app/$1",
+      "@app": "<rootDir>/src/app",
       "@assets/(.*)": "<rootDir>/src/assets/$1",
+      "@assets": "<rootDir>/src/assets",
       "@core/(.*)": "<rootDir>/src/app/core/$1",
+      "@core": "<rootDir>/src/app/core",
       "@env": "<rootDir>/src/environments/environment",
       "@src/(.*)": "<rootDir>/src/src/$1",
-      "@state/(.*)": "<rootDir>/src/app/state/$1"
+      "@src": "<rootDir>/src/src",
+      "@state/(.*)": "<rootDir>/src/app/state/$1",
+      "@state": "<rootDir>/src/app/state",
+      "@store/(.*)": "<rootDir>/src/app/store/$1",
+      "@store": "<rootDir>/src/app/store",
+      "/@store/(.*)": "<rootDir>/src/app/store/$1",
+      "/@store/": "<rootDir>/src/app/store"
     },
     "globals": {
       "ts-jest": {
-        "tsConfig": "<rootDir>/tsconfig.spec.json",
+        "tsConfig": "./tsconfig.spec.json",
         "stringifyContentPathRegex": "\\.html$",
         "astTransformers": [
           "jest-preset-angular/build/InlineFilesTransformer",

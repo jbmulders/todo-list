@@ -14,7 +14,9 @@
     "lib": ["es2018", "dom"],
     "paths": {
       "@model": ["app/core/model"],
-      "@store": ["app/store"]
+      "@model/*": ["app/core/model/*"],
+      "@store": ["app/store"],
+      "@store/*": ["app/store/*"]
     },
     "types": ["jest"]
   },
