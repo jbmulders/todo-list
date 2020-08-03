@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EditTodoComponent } from './edit-todo.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 describe('EditTodoComponent', () => {
   let component: EditTodoComponent;
@@ -8,9 +10,10 @@ describe('EditTodoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditTodoComponent ]
-    })
-    .compileComponents();
+      imports: [FormsModule],
+      declarations: [EditTodoComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -20,6 +23,6 @@ describe('EditTodoComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

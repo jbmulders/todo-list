@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TabsGroupComponent } from './tabs-group.component';
+import { TabComponent } from '../tab/tab.component';
 
 describe('TabsGroupComponent', () => {
   let component: TabsGroupComponent;
@@ -8,9 +9,8 @@ describe('TabsGroupComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TabsGroupComponent ]
-    })
-    .compileComponents();
+      declarations: [TabsGroupComponent, TabComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -20,6 +20,6 @@ describe('TabsGroupComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

@@ -26,6 +26,5 @@ export class LoginCardComponent {
   async doGoogleLoginClick() {
     const provider = new auth.GoogleAuthProvider();
     const resp = await this.afAuth.signInWithPopup(provider);
-    debugger;
   }
 }

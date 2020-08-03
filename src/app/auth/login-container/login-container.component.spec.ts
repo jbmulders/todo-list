@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginContainerComponent } from './login-container.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { AuthFacade } from '@store';
+
+class AuthFacadeMock {}
 
 describe('LoginContainerComponent', () => {
   let component: LoginContainerComponent;
@@ -8,9 +12,10 @@ describe('LoginContainerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginContainerComponent ]
-    })
-    .compileComponents();
+      declarations: [LoginContainerComponent],
+      providers: [{ provide: AuthFacade, useClass: AuthFacadeMock }],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -20,6 +25,6 @@ describe('LoginContainerComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

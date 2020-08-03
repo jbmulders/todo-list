@@ -1,6 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ListContainerComponent } from './list-container.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { TodoFacade } from '@store';
+import { of } from 'rxjs';
+
+class TodoFacadeMock {
+  loading$ = of(false);
+
+  handleLoadTodos = () => of([]);
+}
 
 describe('ListContainerComponent', () => {
   let component: ListContainerComponent;
@@ -8,9 +17,10 @@ describe('ListContainerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ListContainerComponent ]
-    })
-    .compileComponents();
+      declarations: [ListContainerComponent],
+      providers: [{ provide: TodoFacade, useClass: TodoFacadeMock }],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -20,6 +30,6 @@ describe('ListContainerComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });
