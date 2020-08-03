@@ -1,16 +1,18 @@
-// import { TestBed } from '@angular/core/testing';
+import { AuthService } from './auth.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 
-// import { AuthService } from './auth.service';
+class AnglarFireAuthMock {}
 
-// describe('AuthServiceService', () => {
-//   let service: AuthService;
+describe('AuthServiceService', () => {
+  let service: AuthService;
+  let fbAuth: AngularFireAuth;
 
-//   beforeEach(() => {
-//     TestBed.configureTestingModule({});
-//     service = TestBed.inject(AuthService);
-//   });
+  beforeEach(() => {
+    fbAuth = new AnglarFireAuthMock() as AngularFireAuth;
+    service = new AuthService(fbAuth);
+  });
 
-//   it('should be created', () => {
-//     expect(service).toBeTruthy();
-//   });
-// });
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+});
